@@ -1,0 +1,39 @@
+{
+  "app.name": "ecloud",
+  "app.fullname": "Qiniu Enterprice Private Cloud Service",
+  "app.copyright": "Copyright © 2017 Qiniu Inc. All rights reserved.",
+
+  "common.username": "Username",
+  "common.password": "Password",
+  "common.login": "Log in",
+  "common.rememberme": "Remember me",
+  "common.forgotpass": "Forgot password",
+
+  "common.app": "App{count, plural, one {} other {s}}",
+  "common.template": "Template{count, plural, one {} other {s}}",
+
+  "common.create_sth": "Create New {something}",
+  "common.edit_sth": "Edit {something}",
+  "common.delete_warning": "Delete Warning",
+  "common.delete_warning_msg": "Do you really want to delete this {something}?",
+
+  "common.create": "Create",
+  "common.edit": "Edit",
+  "common.delete": "Delete",
+  "common.search": "Search",
+  "common.id": "ID",
+  "common.subject": "Subject",
+  "common.message_type": "Message Type",
+  "common.render_type": "Render Type",
+  "common.created_at": "Created At",
+  "common.from": "From",
+  "common.to": "To",
+  "common.content": "Content",
+
+  "modal.ok": "Ok",
+  "modal.cancel": "Cancel",
+
+  "err.username.required": "Please input your username",
+  "err.password.required": "Please input your password",
+  "err.login.wrong": "Username or password wrong"
+}

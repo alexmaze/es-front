@@ -1,0 +1,38 @@
+{
+  "app.name": "ecloud",
+  "app.fullname": "七牛企业服务整合私有云平台",
+  "app.copyright": "Copyright © 2017 Qiniu Inc. 保留所有权利",
+
+  "common.username": "用户名",
+  "common.password": "密码",
+  "common.login": "登录",
+  "common.rememberme": "记住我",
+  "common.forgotpass": "忘记密码",
+  "common.app": "应用",
+  "common.template": "模板",
+
+  "common.create_sth": "新建{something}",
+  "common.edit_sth": "编辑{something}",
+  "common.delete_warning": "删除确认",
+  "common.delete_warning_msg": "您确定要删除该{something}吗？",
+
+  "common.create": "新建",
+  "common.edit": "编辑",
+  "common.delete": "删除",
+  "common.search": "搜索",
+  "common.id": "编号",
+  "common.subject": "主题",
+  "common.message_type": "消息类型",
+  "common.render_type": "渲染类型",
+  "common.created_at": "创建时间",
+  "common.from": "发件人",
+  "common.to": "收件人",
+  "common.content": "内容",
+
+  "modal.ok": "确定",
+  "modal.cancel": "取消",
+
+  "err.username.required": "请填写用户名",
+  "err.password.required": "请填写密码",
+  "err.login.wrong": "用户名或密码错误"
+}
