@@ -31,3 +31,15 @@ export function searchObject(obj: Object, query: string) {
   }
   return false
 }
+
+export function sleep<T>(seconds: number, data?: T) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      if (data != null) {
+        resolve(data)
+      } else {
+        reject("TIMEOUT")
+      }
+    }, seconds * 1000)
+  })
+}
