@@ -1,10 +1,6 @@
 import * as React from "react"
-import * as ReactDOM from "react-dom"
 import { autobind } from "core-decorators"
-import { observer } from "mobx-react"
-import { observable } from "mobx"
 import { ModalProps } from "antd/lib/modal/Modal.d"
-import { Modal } from "antd"
 
 import { ICommonModalProps, modalStore } from "src/stores"
 import { ConfirmModal, IConfirmModalInput } from "src/components/common-modals/confirm"

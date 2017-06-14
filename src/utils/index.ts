@@ -1,4 +1,4 @@
-export * from "./modal-factory"
+export * from "./ModalFactory"
 
 /**
  * @description 格式化日期字符串为 YYYY-MM-dd
@@ -32,6 +32,15 @@ export function searchObject(obj: Object, query: string) {
   return false
 }
 
+/**
+ * @description 增强的睡眠函数，可定义结束后返回值
+ *
+ * @export
+ * @template T 返回值类型
+ * @param {number} seconds 延迟时间
+ * @param {T} [data] 返回值数据
+ * @returns
+ */
 export function sleep<T>(seconds: number, data?: T) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
