@@ -24,7 +24,7 @@ module.exports = merge(baseWebpack, {
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
       hash: false,
-      template: "./index.hbs"
+      template: "./src/index.hbs"
     }),
     new FriendlyErrorsPlugin()
   ]

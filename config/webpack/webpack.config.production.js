@@ -80,7 +80,7 @@ module.exports = merge(baseWebpack, {
     new OptimizeCSSPlugin(),
     new HtmlWebpackPlugin({
       hash: false,
-      template: './index.hbs'
+      template: './src/index.hbs'
     })
   ],
 });
