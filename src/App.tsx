@@ -7,7 +7,7 @@ import { ModalContainer } from "src/components/modal-container"
 import { renderRoutes } from "react-router-config"
 import createBrowserHistory from "history/createBrowserHistory"
 
-import stores from "src/stores"
+import stores, { localeStore, sessionStore } from "src/stores"
 import LoadingPage from "src/pages/loading"
 import LoginPage from "src/pages/login"
 import { routesConfig } from "./routes"
@@ -18,7 +18,7 @@ const history = createBrowserHistory()
 export default class App extends React.Component<{}, {}> {
 
   render() {
-    const { antd, locale, messages} = stores.localeStore.config
+    const { antd, locale, messages} = localeStore.config
     if (stores.sessionStore.isFetching) {
       return <LoadingPage />
     } else {
@@ -43,8 +43,8 @@ export default class App extends React.Component<{}, {}> {
   }
 
   async componentWillMount() {
-    await stores.sessionStore.fetchSession()
-    if (!stores.sessionStore.session) {
+    await sessionStore.fetchSession()
+    if (!sessionStore.session) {
       history.push("/login")
     }
   }

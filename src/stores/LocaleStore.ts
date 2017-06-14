@@ -1,4 +1,5 @@
 import { observable, action, computed } from "mobx"
+import { autobind } from "core-decorators"
 import { addLocaleData } from "react-intl"
 
 // 导入国际化数据
@@ -18,6 +19,7 @@ interface ILocaleConfig {
   data: any
 }
 
+@autobind
 export class LocaleStore {
 
   @observable config: ILocaleConfig
@@ -31,7 +33,7 @@ export class LocaleStore {
 
   @computed
   get messages() {
-    return this.config.messages
+    return this.config && this.config.messages
   }
 
   constructor() {
@@ -39,8 +41,9 @@ export class LocaleStore {
   }
 
   load() {
+    const defaultLang = window.navigator ? window.navigator.language : ""
     const stored = window.localStorage.getItem("locale")
-    this.switch(stored)
+    this.switch(stored || defaultLang)
   }
 
   /**
@@ -70,7 +73,6 @@ export class LocaleStore {
         data: zhData
       }
     }
-
   }
 
 }
