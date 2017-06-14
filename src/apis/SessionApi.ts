@@ -1,5 +1,4 @@
-import axios from "axios"
-import { API_PREFIX } from "./config"
+// import axios from "axios"
 import { ISession } from "src/models"
 import { sleep } from "src/utils"
 
@@ -8,8 +7,8 @@ export interface ILoginParams {
   password: string
 }
 
-export class SessionAPI {
-  public static login(params: ILoginParams): Promise<ISession> {
+export class SessionApi {
+  public login(params: ILoginParams): Promise<ISession> {
     // return axios.post(`${API_PREFIX}/login`, {
     //   ...params
     // }).then((res) => res.data.data)
@@ -19,7 +18,7 @@ export class SessionAPI {
     })
   }
 
-  public static userinfo(): Promise<ISession> {
+  public userinfo(): Promise<ISession> {
     // return axios.get(`${API_PREFIX}/user`).then((res) => res.data.data)
     return sleep<ISession>(0.2, {
       id: "1",
@@ -27,8 +26,10 @@ export class SessionAPI {
     })
   }
 
-  public static logout(): Promise<ISession> {
+  public logout(): Promise<ISession> {
     // return axios.delete(`${API_PREFIX}/logout`).then((res) => res.data.data)
     return sleep<ISession>(1)
   }
 }
+
+export const sessionApi = new SessionApi

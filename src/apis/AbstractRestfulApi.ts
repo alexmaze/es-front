@@ -1,8 +1,7 @@
 import axios, { AxiosRequestConfig } from "axios"
 import { IResponse } from "src/models"
-import { API_PREFIX } from "./config"
 
-export abstract class BasicRestfulResource<T> {
+export abstract class AbstractRestfulAPI<T> {
 
   constructor(public url: string) {}
 
