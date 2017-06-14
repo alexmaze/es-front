@@ -11,7 +11,7 @@ import zhMessage from "src/assets/locales/zh.json"
 addLocaleData(enData)
 addLocaleData(zhData)
 
-class LocaleStore {
+export class LocaleStore {
 
   @observable
   config: {
@@ -66,5 +66,3 @@ class LocaleStore {
   }
 
 }
-
-export const localeStore = new LocaleStore()

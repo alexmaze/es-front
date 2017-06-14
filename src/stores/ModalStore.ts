@@ -1,9 +1,11 @@
 import * as React from "react"
-import { observable, action, computed } from "mobx"
+import { observable, action } from "mobx"
 import { ModalProps } from "antd/lib/modal/Modal.d"
-import { Modal } from "antd"
 
 let ID = 0
+function generateId() {
+  return `MODAL#${ID++}`
+}
 
 export interface ICommonModalProps<IResult, IInput> {
   resolve: (result: IResult) => void
@@ -12,14 +14,14 @@ export interface ICommonModalProps<IResult, IInput> {
 }
 
 export interface IModal<IResult, IInput> {
-  id: number
+  id: string
   modalProps: ModalProps
   Component: React.ComponentClass<ICommonModalProps<IResult, IInput>>
   props: ICommonModalProps<IResult, IInput>
   data: IInput
 }
 
-class ModalStore {
+export class ModalStore {
 
   @observable
   modals: Array<IModal<any, any>> = []
@@ -38,9 +40,9 @@ class ModalStore {
         confirmLoading: false,
         footer: null,
         ...modalProps
-      })
+      }) as ModalProps
 
-      const id = ID++
+      const id = generateId()
       this.modals.push({
         id,
         Component,
@@ -65,7 +67,7 @@ class ModalStore {
 
   }
 
-  @action remove(id: number) {
+  @action remove(id: string) {
     const index = this.modals.findIndex((item) => item.id === id)
     if (index === -1)  {
       return
@@ -74,5 +76,3 @@ class ModalStore {
   }
 
 }
-
-export const modalStore = new ModalStore()

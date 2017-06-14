@@ -2,8 +2,8 @@ import { observable, action } from "mobx"
 import { ISession } from "src/models"
 import { SessionAPI, ILoginParams } from "src/apis"
 
-class SessionStore {
-  @observable isLogining: boolean = false
+export class SessionStore {
+  @observable isLogining = false
   @observable session: ISession
 
   @action async login(params: ILoginParams) {
@@ -19,7 +19,7 @@ class SessionStore {
     return success
   }
 
-  @action async userinfo() {
+  @action async fetchSession() {
     let success = false
     try {
       this.session = await SessionAPI.userinfo()
@@ -41,5 +41,3 @@ class SessionStore {
     return success
   }
 }
-
-export const sessionStore = new SessionStore()

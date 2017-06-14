@@ -1,23 +1,16 @@
 import * as React from "react"
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
 import { autobind } from "core-decorators"
 import { Spin, LocaleProvider } from "antd"
 import { observable } from "mobx"
 import { observer } from "mobx-react"
 import { IntlProvider } from "react-intl"
-import {
-  BrowserRouter as Router,
-  Route,
-  Link,
-  Switch
-} from "react-router-dom"
 
 import { LoginPage } from "src/pages/login"
 import { MainPage } from "src/pages/main"
 import { ModalContainer } from "src/components/modal-container"
 
 import { sessionStore, localeStore } from "src/stores"
-
-import DevTools from "mobx-react-devtools"
 
 @observer
 @autobind
@@ -54,7 +47,7 @@ export class App extends React.Component<null, null> {
 
   async componentWillMount() {
     this.isChecking = true
-    const isSuccess = await sessionStore.userinfo()
+    await sessionStore.userinfo()
     this.isChecking = false
   }
 }

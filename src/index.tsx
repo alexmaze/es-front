@@ -2,18 +2,26 @@
 
 import * as React from "react"
 import * as ReactDOM from "react-dom"
+import { Provider } from "mobx-react"
+import stores from "./stores"
 import "./index.less"
 
 import { App } from "./App"
 
-const app = document.createElement("div")
-app.id = "app"
-
-document.body.appendChild(app)
-ReactDOM.render(<App />, app)
+ReactDOM.render(
+  <Provider {...stores}>
+    <App />
+  </Provider>
+  , document.getElementById("root"))
 
 // Hot Module Replacement API
 declare var module: { hot: any }
 if (module && module.hot) {
-  module.hot.accept("./App", () => ReactDOM.render(<App />, app))
+  module.hot.accept("./App", () => {
+    ReactDOM.render(
+      <Provider {...stores}>
+        <App />
+      </Provider>
+      , document.getElementById("root"))
+  })
 }
