@@ -21,7 +21,7 @@ export interface ILoginFormProps extends FormComponentProps {
 }
 
 @autobind
-class LoginForm_ extends React.Component<ILoginFormProps, void> {
+class LoginForm extends React.Component<ILoginFormProps, void> {
 
   constructor() {
     super()
@@ -45,22 +45,37 @@ class LoginForm_ extends React.Component<ILoginFormProps, void> {
     const intl = this.props.intl.formatMessage
     const getFormItemOptions = (errMessageId: string) => {
       return {
-        rules: [{ required: true, message: intl({id: errMessageId})}]
+        rules: [{ required: true, message: intl({ id: errMessageId }) }]
+      }
+    }
+    const inputProps = (icon: string, placeholderId: string) => {
+      return {
+        onFocus: this.handleFocus,
+        prefix: <Icon type={icon} style={{ fontSize: 13 }} />,
+        placeholder: intl({ id: placeholderId })
       }
     }
 
+    const displayError = () => {
+      if (this.props.isError) {
+        return <div className="login-form-error"> <FormattedMessage id="err.login.wrong" /> </div>
+      }
+      return null
+    }
+
     return (
+
       <Form onSubmit={this.submit} className="login-form">
         <FormItem>
           {getFieldDecorator("username", getFormItemOptions("err.username.required"))(
-            <Input onFocus={this.handleFocus} prefix={<Icon type="user" style={{ fontSize: 13 }} />} placeholder={intl({id: "common.username"})} />
-            )}
+            <Input {...inputProps("user", "common.username")} />
+          )}
         </FormItem>
         <FormItem>
           {getFieldDecorator("password", getFormItemOptions("err.username.required"))(
-            <Input onFocus={this.handleFocus} prefix={<Icon type="lock" style={{ fontSize: 13 }} />} type="password" placeholder={intl({id: "common.password"})} />
-            )}
-          {this.props.isError ? (<div className="login-form-error"> <FormattedMessage id="err.login.wrong" /> </div>) : (<div />)}
+            <Input {...inputProps("lock", "common.password")} type="password" />
+          )}
+          {displayError()}
         </FormItem>
         <FormItem>
           {getFieldDecorator("remember")(
@@ -76,4 +91,4 @@ class LoginForm_ extends React.Component<ILoginFormProps, void> {
   }
 }
 
-export const LoginForm = injectIntl(Form.create()(LoginForm_ as any) as any)
+export default injectIntl(Form.create()(LoginForm as any) as any)

@@ -3,21 +3,19 @@ import { autobind } from "core-decorators"
 import { RouteComponentProps } from "react-router-dom"
 import { observable } from "mobx"
 import { observer } from "mobx-react"
-import { LoginForm } from "src/components/login-form"
 import { LocaleSwitch } from "src/components/locale-switch"
 import { sessionStore } from "src/stores"
 import { ILoginParams } from "src/apis"
 import { FormattedMessage } from "react-intl"
 
 import "./style.less"
+import LoginForm from "src/components/login-form"
 
 @observer
 @autobind
-export default class LoginPage extends React.Component<RouteComponentProps<void>, void> {
+export default class LoginPage extends React.Component<RouteComponentProps<{}>, void> {
 
-  store = sessionStore
-  @observable
-  isError = false
+  @observable isError = false
 
   async onSubmit({ username, password }: ILoginParams) {
     if (!username || !password) {
@@ -36,11 +34,10 @@ export default class LoginPage extends React.Component<RouteComponentProps<void>
   }
 
   render() {
-    console.log("render login")
     const loginFormProps = {
       onSubmit: this.onSubmit,
       handleFocus: this.handleFocus,
-      isLogining: this.store.isLogining,
+      isLogining: sessionStore.isLogining,
       isError: this.isError
     }
     return (
