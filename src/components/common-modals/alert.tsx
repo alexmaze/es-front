@@ -1,9 +1,8 @@
 import * as React from "react"
-import * as ReactDOM from "react-dom"
 import { autobind } from "core-decorators"
 
 import { ICommonModalProps } from "src/utils"
-import { Input, Form, Icon, Radio, Row, Col, Button } from "antd"
+import { Icon, Row, Col, Button } from "antd"
 import { FormattedMessage as FM } from "react-intl"
 
 export type AlertType = "info" | "error" | "success" | "warning"

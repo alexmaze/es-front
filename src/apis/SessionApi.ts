@@ -19,7 +19,7 @@ export class SessionApi {
   }
 
   public userinfo(): Promise<ISession> {
-    // return axios.get(`${API_PREFIX}/user`).then((res) => res.data.data)
+    // return axios.get(`/user`).then((res) => res.data.data)
     return sleep<ISession>(0.2, {
       id: "1",
       name: "alex"

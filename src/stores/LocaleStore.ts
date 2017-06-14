@@ -74,3 +74,5 @@ export class LocaleStore {
   }
 
 }
+
+export const localeStore = new LocaleStore()

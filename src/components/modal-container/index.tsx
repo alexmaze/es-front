@@ -1,8 +1,6 @@
 import * as React from "react"
-import { observable } from "mobx"
 import { observer } from "mobx-react"
 import { autobind } from "core-decorators"
-import { ModalProps } from "antd/lib/modal/Modal.d"
 import { Modal } from "antd"
 import { modalStore } from "src/stores"
 

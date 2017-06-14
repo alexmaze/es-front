@@ -1,27 +1,19 @@
 /// <reference path="./index.d.ts" />
-
 import * as React from "react"
 import * as ReactDOM from "react-dom"
-import { Provider } from "mobx-react"
-import stores from "./stores"
+import App from "./App"
 import "./index.less"
 
-import { App } from "./App"
+render()
 
-ReactDOM.render(
-  <Provider {...stores}>
-    <App />
-  </Provider>
-  , document.getElementById("root"))
+function render () {
+  ReactDOM.render(<App />, document.getElementById("root"))
+}
 
 // Hot Module Replacement API
 declare var module: { hot: any }
 if (module && module.hot) {
   module.hot.accept("./App", () => {
-    ReactDOM.render(
-      <Provider {...stores}>
-        <App />
-      </Provider>
-      , document.getElementById("root"))
+    render()
   })
 }

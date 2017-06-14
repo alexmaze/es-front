@@ -1,8 +1,7 @@
-import "./style.less"
 import * as React from "react"
 import { autobind } from "core-decorators"
 import { RouteComponentProps } from "react-router-dom"
-import { observable, computed } from "mobx"
+import { observable } from "mobx"
 import { observer } from "mobx-react"
 import { LoginForm } from "src/components/login-form"
 import { LocaleSwitch } from "src/components/locale-switch"
@@ -10,9 +9,11 @@ import { sessionStore } from "src/stores"
 import { ILoginParams } from "src/apis"
 import { FormattedMessage } from "react-intl"
 
+import "./style.less"
+
 @observer
 @autobind
-export class LoginPage extends React.Component<RouteComponentProps<void>, void> {
+export default class LoginPage extends React.Component<RouteComponentProps<void>, void> {
 
   store = sessionStore
   @observable
@@ -24,7 +25,7 @@ export class LoginPage extends React.Component<RouteComponentProps<void>, void> 
     }
     const isSuccess = await sessionStore.login({ username, password })
     if (isSuccess) {
-      this.props.history.push("/")
+      this.props.history.push("/dashboard")
     } else {
       this.isError = true
     }
@@ -57,8 +58,8 @@ export class LoginPage extends React.Component<RouteComponentProps<void>, void> 
   }
 }
 
-const logoImage = require("../../assets/logo_primary.svg")
-const Brand = (props) => {
+const logoImage = require("src/assets/images/logo_primary.svg")
+const Brand = () => {
   return (
     <div className="info">
       <div className="brand">

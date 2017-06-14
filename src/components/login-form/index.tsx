@@ -43,7 +43,7 @@ class LoginForm_ extends React.Component<ILoginFormProps, void> {
   render() {
     const { getFieldDecorator } = this.props.form
     const intl = this.props.intl.formatMessage
-    const getFormItemOptions = (errMessageId) => {
+    const getFormItemOptions = (errMessageId: string) => {
       return {
         rules: [{ required: true, message: intl({id: errMessageId})}]
       }

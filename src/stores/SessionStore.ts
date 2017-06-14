@@ -4,6 +4,7 @@ import { sessionApi, ILoginParams } from "src/apis"
 
 export class SessionStore {
   @observable isLogining = false
+  @observable isFetching = false
   @observable session: ISession
 
   @action async login(params: ILoginParams) {
@@ -21,12 +22,14 @@ export class SessionStore {
 
   @action async fetchSession() {
     let success = false
+    this.isFetching = true
     try {
       this.session = await sessionApi.userinfo()
       success = true
     } catch (e) {
       console.error(e)
     }
+    this.isFetching = false
     return success
   }
 
@@ -41,3 +44,5 @@ export class SessionStore {
     return success
   }
 }
+
+export const sessionStore = new SessionStore()
