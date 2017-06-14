@@ -1,6 +1,6 @@
 import { observable, action } from "mobx"
 import { ISession } from "src/models"
-import { SessionAPI, ILoginParams } from "src/apis"
+import { sessionApi, ILoginParams } from "src/apis"
 
 export class SessionStore {
   @observable isLogining = false
@@ -10,7 +10,7 @@ export class SessionStore {
     let success = false
     this.isLogining = true
     try {
-      this.session = await SessionAPI.login(params)
+      this.session = await sessionApi.login(params)
       success = true
     } catch (e) {
       console.error(e)
@@ -22,7 +22,7 @@ export class SessionStore {
   @action async fetchSession() {
     let success = false
     try {
-      this.session = await SessionAPI.userinfo()
+      this.session = await sessionApi.userinfo()
       success = true
     } catch (e) {
       console.error(e)
@@ -33,7 +33,7 @@ export class SessionStore {
   @action async logout() {
     let success = false
     try {
-      this.session = await SessionAPI.logout()
+      this.session = await sessionApi.logout()
       success = true
     } catch (e) {
       console.error(e)

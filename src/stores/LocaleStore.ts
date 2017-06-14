@@ -11,15 +11,23 @@ import zhMessage from "src/assets/locales/zh.json"
 addLocaleData(enData)
 addLocaleData(zhData)
 
+interface ILocaleConfig {
+  messages: any,
+  antd: any,
+  locale: string,
+  data: any
+}
+
 export class LocaleStore {
 
-  @observable
-  config: {
-    messages: any,
-    antd: any,
-    locale: string,
-    data: any
-  }
+  @observable config: ILocaleConfig
+  @observable languages = [{
+    title: "English",
+    value: "en-US"
+  }, {
+    title: "简体中文",
+    value: "zh-Hans-CN"
+  }]
 
   @computed
   get messages() {
