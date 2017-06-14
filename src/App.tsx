@@ -5,14 +5,11 @@ import { LocaleProvider } from "antd"
 import { IntlProvider } from "react-intl"
 import { ModalContainer } from "src/components/modal-container"
 import { renderRoutes } from "react-router-config"
-import createBrowserHistory from "history/createBrowserHistory"
 
-import stores, { localeStore, sessionStore } from "src/stores"
+import stores, { localeStore, sessionStore, routeStore } from "src/stores"
 import LoadingPage from "src/pages/loading"
 import LoginPage from "src/pages/login"
 import { routesConfig } from "./routes"
-
-const history = createBrowserHistory()
 
 @observer
 export default class App extends React.Component<{}, {}> {
@@ -27,7 +24,7 @@ export default class App extends React.Component<{}, {}> {
           <LocaleProvider locale={antd}>
             <IntlProvider locale={locale} messages={messages}>
               <div>
-                <Router history={history}>
+                <Router history={routeStore.history}>
                   <Switch>
                     <Route exact={true} path="/login" component={LoginPage} />
                     {renderRoutes(routesConfig)}
@@ -45,7 +42,7 @@ export default class App extends React.Component<{}, {}> {
   async componentWillMount() {
     await sessionStore.fetchSession()
     if (!sessionStore.session) {
-      history.push("/login")
+      routeStore.history.push("/login")
     }
   }
 }
