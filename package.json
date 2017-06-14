@@ -1,33 +1,15 @@
 {
   "name": "ecloud-front",
   "version": "0.0.1",
-  "description": "Ecloud Frontend",
-  "main": "dist/index.js",
+  "private": true,
   "scripts": {
     "clean": "rimraf dist",
     "build": "npm run clean && node config/build.js",
     "dev": "node config/dev-server.js",
     "preview": "http-server ./dist -p 1234 -c-1",
-    "lint": "tslint \"src/**/**.ts*\""
+    "lint": "tslint 'src/**/*.ts?(x)'"
   },
-  "repository": {
-    "type": "git",
-    "url": "git@gitlab.qiniu.io:evm/qbusapi-front.git"
-  },
-  "keywords": [
-    "React",
-    "React-Router",
-    "MobX",
-    "Typescript"
-  ],
-  "author": "'Alex (Jinghao) Yan <yanhao1991@gmail.com>",
-  "license": "ISC",
   "devDependencies": {
-    "@types/core-decorators": "^0.10.32",
-    "@types/react": "^15.0.18",
-    "@types/react-dom": "^0.14.23",
-    "@types/react-intl": "^2.2.6",
-    "@types/react-router-dom": "^4.0.3",
     "autoprefixer-loader": "^3.2.0",
     "awesome-typescript-loader": "^3.1.2",
     "babel-core": "^6.24.0",
@@ -55,15 +37,21 @@
     "rimraf": "^2.6.1",
     "source-map-loader": "^0.2.0",
     "style-loader": "^0.16.0",
-    "tslint": "^4.5.1",
+    "tslint": "^5.4.3",
     "tslint-loader": "^3.4.3",
     "tslint-react": "^2.5.0",
-    "typescript": "^2.2.1",
+    "typescript": "^2.3.4",
     "webpack": "^2.3.1",
     "webpack-dev-server": "^2.4.2",
     "webpack-merge": "^4.1.0"
   },
   "dependencies": {
+    "@types/core-decorators": "^0.10.32",
+    "@types/react": "^15.0.18",
+    "@types/react-dom": "^0.14.23",
+    "@types/react-intl": "^2.2.6",
+    "@types/react-router-config": "^1.0.1",
+    "@types/react-router-dom": "^4.0.3",
     "antd": "^2.9.0",
     "axios": "^0.16.0",
     "core-decorators": "^0.15.0",
@@ -72,6 +60,7 @@
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "react-intl": "^2.2.3",
+    "react-router-config": "^1.0.0-beta.3",
     "react-router-dom": "^4.0.0"
   }
 }
