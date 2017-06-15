@@ -1,38 +1,54 @@
 import * as React from "react"
+import styled from "styled-components"
+import { observable } from "mobx"
 import { observer } from "mobx-react"
+import { autobind } from "core-decorators"
 import { renderRoutes, RouteConfigComponentProps } from "react-router-config"
-// import {
-//   BrowserRouter as Router,
-//   Route,
-//   Link,
-//   Redirect,
-//   Switch
-// } from "react-router-dom"
+import { Layout } from "antd"
 
-// import { Header } from "src/components/header"
-// import { Sidebar } from "src/components/sidebar"
-// import { AppsPage } from "src/pages/apps"
-// import { TemplatesPage } from "src/pages/templates"
+import { Sidebar, IMenuConfig } from "src/components/sidebar"
+import { Header } from "src/components/header"
+
+const menuConfig: IMenuConfig[] = [{
+  icon: "appstore",
+  title: "keystone.manage",
+  location: "/keystone"
+}]
 
 @observer
+@autobind
 export default class PortalSkeleton extends React.Component<RouteConfigComponentProps<{}>, {}> {
 
-  render() {
-    const routes = this.props.route.routes
-    return (
-      <div className="main-page">
-        {/*<Header history={this.props.history} />*/}
-        <main>
-          {/*<Sidebar history={this.props.history} />*/}
-          <div className="sub-pages">
-            what?
-            {renderRoutes(routes)}
-            {/*<Route exact={true} path="/apps" component={AppsPage} />*/}
-            {/*<Route exact={true} path="/templates" component={TemplatesPage} />*/}
-          </div>
-        </main>
-      </div>
-    )
+  @observable isSideCollapsed = false
+
+  handleSideCollapsed () {
+    this.isSideCollapsed = !this.isSideCollapsed
   }
 
+  render () {
+    const routes = this.props.route.routes
+    return (
+      <Page>
+        <Layout.Sider width={230} collapsible collapsed={this.isSideCollapsed} onCollapse={this.handleSideCollapsed}>
+          <Sidebar history={this.props.history} menuConfig={menuConfig} collapsed={this.isSideCollapsed} />
+        </Layout.Sider>
+        <Layout>
+          <Layout.Header style={{backgroundColor: "#FFFFFF"}}>
+            <Header />
+          </Layout.Header>
+          <Layout.Content>
+            {renderRoutes(routes)}
+          </Layout.Content>
+        </Layout>
+      </Page>
+    )
+  }
 }
+
+const Page = styled(Layout)`
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+`
