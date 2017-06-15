@@ -7,7 +7,7 @@ import { FormattedMessage as FM } from "react-intl"
 import { searchObject } from "src/utils"
 import { Table, Button, Input } from "antd"
 
-import { localeStore } from "src/stores"
+import { localeStore, domainStore } from "src/stores"
 import { IDomain } from "src/models"
 
 class DomainTable extends Table<IDomain> {}
@@ -15,13 +15,12 @@ class DomainTable extends Table<IDomain> {}
 @observer
 @autobind
 export class DomainTab extends React.Component<{}, {}> {
-  @observable isLoading = false
-  @observable data: IDomain[]
   @observable searchKey = ""
   @observable selectedIds: string[] = []
 
   @computed get showData () {
-    return this.data ? this.data.filter((item) => searchObject(item, this.searchKey)) : []
+    const data = domainStore.domains
+    return data ? data.filter((item) => searchObject(item, this.searchKey)) : []
   }
 
   async onCreate () {
@@ -97,7 +96,7 @@ export class DomainTab extends React.Component<{}, {}> {
       rowKey: "id",
       dataSource: this.showData,
       bordered: true,
-      loading: this.isLoading,
+      loading: domainStore.isFetching,
       columns
     }
     return (
