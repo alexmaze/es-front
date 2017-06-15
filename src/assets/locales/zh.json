@@ -11,6 +11,7 @@
   "common.forgotpass": "忘记密码",
 
   "keystone.manage": "Keystone 管理",
+  "domain": "域",
   "project": "项目",
   "group": "用户组",
   "user": "用户",

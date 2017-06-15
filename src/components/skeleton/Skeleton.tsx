@@ -32,10 +32,10 @@ export class Skeleton extends React.Component<RouteConfigComponentProps<{}>, {}>
           <Sidebar history={this.props.history} menuConfig={menuConfig} collapsed={this.isSideCollapsed} />
         </Layout.Sider>
         <Layout>
-          <Layout.Header style={{backgroundColor: "#FFFFFF"}}>
+          <Layout.Header style={{backgroundColor: "white", borderBottom: "1px solid #D9D9D9"}}>
             <Header />
           </Layout.Header>
-          <Layout.Content>
+          <Layout.Content style={{backgroundColor: "white", padding: "20px"}}>
             {renderRoutes(routes)}
           </Layout.Content>
         </Layout>
