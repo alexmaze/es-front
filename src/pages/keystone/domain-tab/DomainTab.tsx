@@ -4,11 +4,13 @@ import { autobind } from "core-decorators"
 import { observer } from "mobx-react"
 import { observable, computed } from "mobx"
 import { FormattedMessage as FM } from "react-intl"
-import { searchObject } from "src/utils"
+import { searchObject, ModalFactory } from "src/utils"
 import { Table, Button, Input } from "antd"
 
 import { localeStore, domainStore } from "src/stores"
 import { IDomain } from "src/models"
+
+import { CreateDomainModal } from "./CreateDomainModal"
 
 class DomainTable extends Table<IDomain> {}
 
@@ -24,29 +26,26 @@ export class DomainTab extends React.Component<{}, {}> {
   }
 
   async onCreate () {
-    // const something = <FM id="common.template" values={{ count: "1" }} />
-    // const title = <FM id="common.create_sth" values={{ something }}/>
+    const something = <FM id="domain" />
+    const title = <FM id="common.create_sth" values={{ something }}/>
 
-    // try {
-    //   let data = await ModalFactory.create<ITemplate, ITemplate>({ title }, CreateTemplateModal)
-    //   data = (await TemplateAPI.create(data)).data
-    //   this.data.push(data)
-    // } catch (e) {
-    // }
+    try {
+      await ModalFactory.create<IDomain, IDomain>({ title }, CreateDomainModal)
+    } catch (e) {
+      // todo
+    }
   }
 
   async onEdit () {
-    // const something = <FM id="common.template" values={{ count: "1" }} />
-    // const title = <FM id="common.edit_sth" values={{ something }}/>
+    const something = <FM id="domain" />
+    const title = <FM id="common.edit_sth" values={{ something }}/>
 
-    // const selectedItem = this.data.find((item) => item.id === this.selectedIds[0])
-    // try {
-    //   let data = await ModalFactory.create<ITemplate, ITemplate>({ title }, CreateTemplateModal, selectedItem)
-    //   data = (await TemplateAPI.update(selectedItem.id, data)).data
-    //   Object.assign(selectedItem, data)
-    //   this.data = [...this.data] // force mobx to rerender
-    // } catch (e) {
-    // }
+    const selectedItem = this.showData.find((item) => item.id === this.selectedIds[0])
+    try {
+      await ModalFactory.create<IDomain, IDomain>({ title }, CreateDomainModal, selectedItem)
+    } catch (e) {
+      // todo
+    }
   }
 
   onDelete () {

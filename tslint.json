@@ -96,6 +96,7 @@
       "check-separator",
       "check-type",
       "check-typecast"
-    ]
+    ],
+    "jsx-no-string-ref": false
   }
 }
