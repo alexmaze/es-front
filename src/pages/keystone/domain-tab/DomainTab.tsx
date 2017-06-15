@@ -25,6 +25,13 @@ export class DomainTab extends React.Component<{}, {}> {
     return data ? data.filter((item) => searchObject(item, this.searchKey)) : []
   }
 
+  @computed selectedItem () {
+    if (this.selectedIds.length !== 1) {
+      return null
+    }
+    return this.showData.find((item) => item.id === this.selectedIds[0])
+  }
+
   async onCreate () {
     const something = <FM id="domain" />
     const title = <FM id="common.create_sth" values={{ something }}/>
@@ -40,32 +47,29 @@ export class DomainTab extends React.Component<{}, {}> {
     const something = <FM id="domain" />
     const title = <FM id="common.edit_sth" values={{ something }}/>
 
-    const selectedItem = this.showData.find((item) => item.id === this.selectedIds[0])
     try {
-      await ModalFactory.create<IDomain, IDomain>({ title }, CreateDomainModal, selectedItem)
+      await ModalFactory.create<IDomain, IDomain>({ title }, CreateDomainModal, this.selectedItem())
     } catch (e) {
       // todo
     }
   }
 
   onDelete () {
-    // const textLowercase = {
-    //   textTransform: "lowercase"
-    // }
-    // const something = <span style={textLowercase}><FM id="common.template" values={{ count: "1" }} /></span>
-    // const title = <FM id="common.delete_warning" />
-    // const content = <FM id="common.delete_warning_msg" values={{ something }} />
+    const textLowercase = {
+      textTransform: "lowercase"
+    }
+    const something = <span style={textLowercase}><FM id="domain" /></span>
+    const title = <FM id="common.delete_warning" />
+    const content = <FM id="common.delete_warning_msg" values={{ something }} />
 
-    // const selectedItem = this.data.find((item) => item.id === this.selectedIds[0])
-    // ModalFactory.confirm({
-    //   title,
-    //   content
-    // }).then(() => {
-    //   return TemplateAPI.delete(selectedItem.id)
-    // }).then(() => {
-    //   this.data.splice(this.data.indexOf(selectedItem), 1)
-    // }).catch((err) => {
-    // })
+    ModalFactory.confirm({
+      title,
+      content
+    }).then(() => {
+      return domainStore.delete(this.selectedItem().id)
+    }).catch((err) => {
+      // todo
+    })
   }
 
   onSearch (e: React.ChangeEvent<HTMLInputElement>) {
