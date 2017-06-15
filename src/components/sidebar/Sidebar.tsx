@@ -47,7 +47,7 @@ export class Sidebar extends React.Component<ISidebarProps, {}> {
 }
 
 const BrandLogo = (props: { collapsed: boolean }) => {
-  const logoImage = require("src/assets/images/logo_primary.svg")
+  const logoImage = require("src/assets/images/logo.svg")
   const LogoWrapper = styled.div`
     text-align: center;
     padding: 30px 0;

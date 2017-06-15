@@ -6,6 +6,7 @@
   "common.username": "用户名",
   "common.password": "密码",
   "common.login": "登录",
+  "common.logout": "登出系统",
   "common.rememberme": "记住我",
   "common.forgotpass": "忘记密码",
 
@@ -14,6 +15,8 @@
   "group": "用户组",
   "user": "用户",
   "role": "角色",
+
+  "notification": "通知",
 
   "common.create_sth": "新建{something}",
   "common.edit_sth": "编辑{something}",
