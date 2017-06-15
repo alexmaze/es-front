@@ -5,7 +5,7 @@ import { observer } from "mobx-react"
 import { Tabs } from "antd"
 import { FormattedMessage as FM } from "react-intl"
 
-import { DomainTab } from "./tabs/DomainTab"
+import { DomainTab } from "./domain-tab"
 
 const TabPane = Tabs.TabPane
 
