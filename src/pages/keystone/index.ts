@@ -1,1 +1,1 @@
-export * from "./Keystone"
+export * from "./KeystonePage"

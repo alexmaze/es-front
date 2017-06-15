@@ -5,7 +5,6 @@ import { observer } from "mobx-react"
 import { autobind } from "core-decorators"
 import { renderRoutes, RouteConfigComponentProps } from "react-router-config"
 import { Layout } from "antd"
-
 import { Sidebar, IMenuConfig } from "src/components/sidebar"
 import { Header } from "src/components/header"
 
@@ -17,7 +16,7 @@ const menuConfig: IMenuConfig[] = [{
 
 @observer
 @autobind
-export default class PortalSkeleton extends React.Component<RouteConfigComponentProps<{}>, {}> {
+export class Skeleton extends React.Component<RouteConfigComponentProps<{}>, {}> {
 
   @observable isSideCollapsed = false
 

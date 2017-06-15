@@ -21,7 +21,7 @@ export interface ILoginFormProps extends FormComponentProps {
 }
 
 @autobind
-class LoginForm extends React.Component<ILoginFormProps, void> {
+class InLoginForm extends React.Component<ILoginFormProps, void> {
 
   constructor() {
     super()
@@ -91,4 +91,4 @@ class LoginForm extends React.Component<ILoginFormProps, void> {
   }
 }
 
-export default injectIntl(Form.create()(LoginForm as any) as any)
+export const LoginForm = injectIntl(Form.create()(InLoginForm as any) as any)

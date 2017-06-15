@@ -7,8 +7,8 @@ import { ModalContainer } from "src/components/modal-container"
 import { renderRoutes } from "react-router-config"
 
 import stores, { localeStore, sessionStore, routeStore } from "src/stores"
-import LoadingPage from "src/pages/loading"
-import LoginPage from "src/pages/login"
+import { LoadingPage } from "src/pages/loading"
+import { LoginPage } from "src/pages/login"
 import { routesConfig } from "./routes"
 
 @observer

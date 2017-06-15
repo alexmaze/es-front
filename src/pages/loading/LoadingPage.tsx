@@ -13,10 +13,8 @@ const StyledDiv = styled.div`
   height: 100%;
 `
 
-const LoadingPage: React.SFC<{}> = () => (
+export const LoadingPage: React.SFC<{}> = () => (
   <StyledDiv>
     <Spin size="large" />
   </StyledDiv>
 )
-
-export default LoadingPage

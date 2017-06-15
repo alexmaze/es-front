@@ -18,9 +18,6 @@ export class LocaleSwitch extends React.Component<IProps, void> {
 
   handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     localeStore.switch(e.target.value)
-    // this.props.history.replace(this.props.history.location)
-    // this.props.history.push(this.props.history.location)
-    // window.location.reload()
   }
 
   render() {
@@ -32,8 +29,9 @@ export class LocaleSwitch extends React.Component<IProps, void> {
     }
     return (
       <RadioGroup style={{margin: "0 10px"}} value={localeStore.config.locale} onChange={this.handleChange}>
-        <RadioButton style={buttonStyle} value="zh-Hans-CN">中文</RadioButton>
-        <RadioButton style={buttonStyle} value="en-US">English</RadioButton>
+        {localeStore.languages.map(lang => (
+          <RadioButton style={buttonStyle} value={lang.value}>{lang.title}</RadioButton>
+        ))}
       </RadioGroup>
     )
   }

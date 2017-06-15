@@ -6,14 +6,13 @@ import { observer } from "mobx-react"
 import { LocaleSwitch } from "src/components/locale-switch"
 import { sessionStore } from "src/stores"
 import { ILoginParams } from "src/apis"
-import { FormattedMessage } from "react-intl"
-
+import { FormattedMessage as FM } from "react-intl"
+import { LoginForm } from "src/components/login-form"
 import "./style.less"
-import LoginForm from "src/components/login-form"
 
 @observer
 @autobind
-export default class LoginPage extends React.Component<RouteComponentProps<{}>, void> {
+export class LoginPage extends React.Component<RouteComponentProps<{}>, void> {
 
   @observable isError = false
 
@@ -47,7 +46,7 @@ export default class LoginPage extends React.Component<RouteComponentProps<{}>, 
           <LoginForm {...loginFormProps} />
         </main>
         <footer>
-          <p><FormattedMessage id="app.copyright" /></p>
+          <p><FM id="app.copyright" /></p>
           <LocaleSwitch history={this.props.history} />
         </footer>
       </div>
@@ -61,9 +60,9 @@ const Brand = () => {
     <div className="info">
       <div className="brand">
         <img className="logo" src={logoImage} />
-        <span className="title"><FormattedMessage id="app.name" /></span>
+        <span className="title"><FM id="app.name" /></span>
       </div>
-      <span className="sub-title"><FormattedMessage id="app.fullname" /></span>
+      <span className="sub-title"><FM id="app.fullname" /></span>
     </div>
   )
 }
