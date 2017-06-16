@@ -22,6 +22,7 @@ export class CreateDomainModal extends React.Component<ICommonModalProps<IDomain
       if (!err) {
         this.isSubmitting = true
         if (this.props.data) {
+          data = {...this.props.data, ...data}
           await domainStore.update(data)
         } else {
           await domainStore.create(data)
@@ -59,7 +60,7 @@ const DomainForm = Form.create()(((props: IDomainFormProps) => {
   }
   const { getFieldDecorator: desc } = props.form
   return (
-    <Form>
+  <Form>
       <Form.Item {...formItemLayout} label={<FM id="common.name" />} >
         {desc("name", {
           initialValue: isNew ? "" : props.data.name,
@@ -72,7 +73,7 @@ const DomainForm = Form.create()(((props: IDomainFormProps) => {
         {desc("enabled", {
           initialValue: isNew ? false : props.data.enabled
         })(
-          <Switch />
+          <Switch defaultChecked={isNew ? false : props.data.enabled} />
           )}
       </Form.Item>
       <Form.Item {...formItemLayout} label={<FM id="common.description" />} >

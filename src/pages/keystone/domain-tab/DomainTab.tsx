@@ -5,7 +5,7 @@ import { observer } from "mobx-react"
 import { observable, computed } from "mobx"
 import { FormattedMessage as FM } from "react-intl"
 import { searchObject, ModalFactory } from "src/utils"
-import { Table, Button, Input } from "antd"
+import { Table, Button, Input, Switch } from "antd"
 
 import { localeStore, domainStore } from "src/stores"
 import { IDomain } from "src/models"
@@ -25,7 +25,7 @@ export class DomainTab extends React.Component<{}, {}> {
     return data ? data.filter((item) => searchObject(item, this.searchKey)) : []
   }
 
-  @computed selectedItem () {
+  @computed get selectedItem () {
     if (this.selectedIds.length !== 1) {
       return null
     }
@@ -48,7 +48,7 @@ export class DomainTab extends React.Component<{}, {}> {
     const title = <FM id="common.edit_sth" values={{ something }}/>
 
     try {
-      await ModalFactory.create<IDomain, IDomain>({ title }, CreateDomainModal, this.selectedItem())
+      await ModalFactory.create<IDomain, IDomain>({ title }, CreateDomainModal, this.selectedItem)
     } catch (e) {
       // todo
     }
@@ -66,7 +66,7 @@ export class DomainTab extends React.Component<{}, {}> {
       title,
       content
     }).then(() => {
-      return domainStore.delete(this.selectedItem().id)
+      return domainStore.delete(this.selectedItem.id)
     }).catch((err) => {
       // todo
     })
@@ -86,7 +86,8 @@ export class DomainTab extends React.Component<{}, {}> {
       dataIndex: "name"
     }, {
       title: <FM id="common.enabled" />,
-      dataIndex: "enabled"
+      dataIndex: "enabled",
+      render: (enabled: boolean) => <Switch checked={enabled} />
     }, {
       title: <FM id="common.description" />,
       dataIndex: "description"
